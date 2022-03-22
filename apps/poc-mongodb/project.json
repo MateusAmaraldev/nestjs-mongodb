@@ -1,0 +1,52 @@
+{
+  "root": "apps/poc-mongodb",
+  "sourceRoot": "apps/poc-mongodb/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/poc-mongodb",
+        "main": "apps/poc-mongodb/src/main.ts",
+        "tsConfig": "apps/poc-mongodb/tsconfig.app.json",
+        "assets": ["apps/poc-mongodb/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/poc-mongodb/src/environments/environment.ts",
+              "with": "apps/poc-mongodb/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:node",
+      "options": {
+        "buildTarget": "poc-mongodb:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/poc-mongodb/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/poc-mongodb"],
+      "options": {
+        "jestConfig": "apps/poc-mongodb/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
