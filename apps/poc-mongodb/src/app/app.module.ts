@@ -5,7 +5,7 @@ import { CatsService } from './cat.service';
 import {Cat,CatSchema} from './cat.schema';
 
 @Module({
-  imports: [MongooseModule.forRoot(`mongodb+srv://pocmongodbuser:${process.env.MONGODB_PASSWORD}@cluster0.o6jrj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`),
+  imports: [MongooseModule.forRoot(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@cluster0.o6jrj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`),
 
 MongooseModule.forFeature([
   {
